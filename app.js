@@ -1,26 +1,38 @@
 var path = require('path');
 
 var apos = require('apostrophe')({
-  shortName: 'Blocks3.com',
+    shortName: 'Blocks3',
 
-  // See lib/modules for basic project-level configuration of our modules
-  // responsible for serving static assets, managing page templates and
-  // configuring user accounts.
+    // See lib/modules for basic project-level configuration of our modules
+    // responsible for serving static assets, managing page templates and
+    // configuring user accounts.
 
-  modules: {
+    modules: {
 
-    // Apostrophe module configuration
+        // Apostrophe module configuration
 
-    // Note: most configuration occurs in the respective
-    // modules' directories. See lib/apostrophe-assets/index.js for an example.
-    
-    // However any modules that are not present by default in Apostrophe must at
-    // least have a minimal configuration here: `moduleName: {}`
+        // Note: most configuration occurs in the respective
+        // modules' directories. See lib/apostrophe-assets/index.js for an example.
 
-    // If a template is not found somewhere else, serve it from the top-level
-    // `views/` folder of the project
+        // However any modules that are not present by default in Apostrophe must at
+        // least have a minimal configuration here: `moduleName: {}`
 
-    'apostrophe-templates': { viewsFolderFallback: path.join(__dirname, 'views') }
+        // If a template is not found somewhere else, serve it from the top-level
+        // `views/` folder of the project
 
-  }
+        'apostrophe-templates': { viewsFolderFallback: path.join(__dirname, 'views') },
+        'apostrophe-pages': {
+            types: [{
+                    name: 'default',
+                    label: 'Default'
+                },
+                {
+                    name: 'home',
+                    label: 'Home'
+                },
+            ]
+        },
+        'blocks3-theme': {}
+
+    }
 });

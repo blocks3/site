@@ -16,14 +16,40 @@
   {#
     This block outputs its contents in the HTML document's <head>.
     It is a good place to put extra <script> <link> and <meta> tags.
+
   #}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 {% endblock %}
 
 {% block beforeMain %}
-  {#
-    We recommend you use the beforeMain block for global page components
-    like headers or navigation.
-  #}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item
+      {% if data.page and
+        (apos.pages.isAncestorOf(tab, data.page) or tab._id == data.page._id)
+      %}
+        active
+      {% endif %}">
+      <a class="nav-link" href="{{ data.home._url }}">{{ data.home.title }}</a></li>
+     {% for tab in data.home._children %}
+        <li class="nav-item
+          {% if data.page and
+            (apos.pages.isAncestorOf(tab, data.page) or tab._id == data.page._id)
+          %}
+            active
+          {% endif %}
+        "><a class="nav-link" href="{{ tab._url }}">{{ tab.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+</nav>
 {% endblock %}
 
 {% block main %}
@@ -35,7 +61,6 @@
 {% endblock %}
 
 {% block afterMain %}
-  {#
-    This would be a great place to put a global footer.
-  #}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 {% endblock %}
